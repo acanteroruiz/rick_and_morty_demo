@@ -14,7 +14,7 @@ class GraphQLCharactersDataSource extends CharactersDataSource
     graphQLClient,
   }) : this.graphQLClient = graphQLClient ?? Get.find();
 
-  String charactersQuery() {
+  static String charactersQuery() {
     return '''
         query {
       characters(page: 1) {

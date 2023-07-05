@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/features/character_detail/domain/bloc/character_bloc.dart';
@@ -27,7 +26,8 @@ class CharacterListItem extends StatelessWidget {
           subtitle: Text('Status: ${_character.status}'),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () async {
-            await Get.find<CharacterBloc>().add(CharacterFetch(id: _character.id));
+            await Get.find<CharacterBloc>()
+                .add(CharacterFetch(id: _character.id));
             Get.to(CharacterDetailPage());
           },
         ),

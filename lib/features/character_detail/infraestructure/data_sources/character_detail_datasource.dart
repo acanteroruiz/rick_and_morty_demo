@@ -14,7 +14,7 @@ class GraphQLCharacterDetailDataSource extends CharacterDetailDataSource
     graphQLClient,
   }) : this.graphQLClient = graphQLClient ?? Get.find();
 
-  String characterQuery() {
+  static String characterQuery() {
     return r'''
         query characterDetail($id: ID!) {
       character(id: $id) {
@@ -35,24 +35,6 @@ class GraphQLCharacterDetailDataSource extends CharacterDetailDataSource
     }
     ''';
   }
-
-  /*r'''
-      query login ($email: String!, $password: String!, $account_id: Int) {
-        login(email: $email, password: $password, account_id: $account_id) {
-          id
-          first_name
-          last_name
-          email
-          role
-          about_me
-          avatar_url
-          avatar_xl_url
-          created_at
-          updated_at
-          authentication_token
-        }
-      }
-    '''*/
 
   @override
   Future<QueryResult> fetchCharacterDetail(String id) async {

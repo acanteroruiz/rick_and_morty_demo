@@ -51,9 +51,18 @@ void main() {
             body: characterDetailResponse,
           ),
         );
-        final actual = await dataSource.fetchCharacterDetail("1");
+        final id = "1";
+        final options = QueryOptions(
+          document: gql(GraphQLCharacterDetailDataSource.characterQuery()),
+          variables: <String, dynamic>{
+            'id': id,
+          },
+        );
+        final actual = await dataSource.fetchCharacterDetail(id);
         final expected = QueryResult(
+          options: options,
           data: json.decode(characterDetailData),
+          source: QueryResultSource.network,
         );
         expect(actual.data, expected.data);
         //verify(dataSource.fetchCharacterDetail("1")).called(1);

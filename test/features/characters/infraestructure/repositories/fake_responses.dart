@@ -1,9 +1,14 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:rick_and_morty_app/features/characters/infraestructure/data_sources/characters_data_source.dart';
 
 final errors = [GraphQLError(message: 'error')];
 
 final tResponseWithErrors = QueryResult(
+  options: QueryOptions(
+    document: gql(GraphQLCharactersDataSource.charactersQuery()),
+  ),
   exception: OperationException(graphqlErrors: errors),
+  source: QueryResultSource.network,
 );
 
 final charactersDataResponse = <String, dynamic>{
@@ -23,4 +28,10 @@ final charactersDataResponse = <String, dynamic>{
   }
 };
 
-final tCharactersResponse = QueryResult(data: charactersDataResponse);
+final tCharactersResponse = QueryResult(
+  options: QueryOptions(
+    document: gql(GraphQLCharactersDataSource.charactersQuery()),
+  ),
+  data: charactersDataResponse,
+  source: QueryResultSource.network,
+);

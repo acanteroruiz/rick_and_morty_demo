@@ -25,7 +25,7 @@ void main() {
     link = getMyAuthLink().concat(httpLink);
 
     graphQLClientClient = GraphQLClient(
-      //cache: getTestCache(),
+      cache: getTestCache(),
       link: link,
     );
 
@@ -43,8 +43,13 @@ void main() {
           ),
         );
         final actual = await dataSource.fetchCharacters();
+        final options = QueryOptions(
+          document: gql(GraphQLCharactersDataSource.charactersQuery()),
+        );
         final expected = QueryResult(
+          options: options,
           data: json.decode(charactersData),
+          source: QueryResultSource.network,
         );
         expect(actual.data, expected.data);
       },

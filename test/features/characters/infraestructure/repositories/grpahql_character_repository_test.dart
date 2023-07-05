@@ -44,11 +44,16 @@ void main() {
     });
 
     test('should throw server exception when api doesn´t respond', () async {
-      when(charactersDataSource.fetchCharacters())
-          .thenAnswer((_) async => QueryResult(
-                data: null,
-                exception: null,
-              ));
+      when(charactersDataSource.fetchCharacters()).thenAnswer(
+        (_) async => QueryResult(
+          options: QueryOptions(
+            document: gql(GraphQLCharactersDataSource.charactersQuery()),
+          ),
+          data: null,
+          exception: null,
+          source: QueryResultSource.network,
+        ),
+      );
       final _call = charactersRepository.fetchCharacters;
 
       expect(_call(), throwsA(predicate((e) => e is Exception)));
