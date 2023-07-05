@@ -10,13 +10,19 @@ import 'package:rick_and_morty_app/features/characters/domain/repositories/chara
 import 'package:rick_and_morty_app/features/characters/infraestructure/data_sources/characters_data_source.dart';
 import 'package:rick_and_morty_app/features/characters/infraestructure/repositories/graphql_character_repository.dart';
 
-void configureInyector() {
+void configureInjector() {
   Get.lazyPut<GraphQLClient>(() => MyGraphQlClient().client);
-  Get.lazyPut<CharactersDataSource>(() => GraphQLCharactersDataSource(), fenix: true);
-  Get.lazyPut<CharactersRepository>(() => GraphQLCharactersRepository(), fenix: true);
+  Get.lazyPut<CharactersDataSource>(() => GraphQLCharactersDataSource(),
+      fenix: true);
+  Get.lazyPut<CharactersRepository>(() => GraphQLCharactersRepository(),
+      fenix: true);
   Get.lazyPut<CharactersBloc>(() => CharactersBloc(), fenix: true);
 
-  Get.lazyPut<CharacterDetailDataSource>(() => GraphQLCharacterDetailDataSource(), fenix: true);
-  Get.lazyPut<CharacterDetailRepository>(() => GraphQLCharacterDetailRepository(), fenix: true);
+  Get.lazyPut<CharacterDetailDataSource>(
+      () => GraphQLCharacterDetailDataSource(),
+      fenix: true);
+  Get.lazyPut<CharacterDetailRepository>(
+      () => GraphQLCharacterDetailRepository(),
+      fenix: true);
   Get.lazyPut<CharacterBloc>(() => CharacterBloc(), fenix: true);
 }
