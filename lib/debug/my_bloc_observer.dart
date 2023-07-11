@@ -13,10 +13,4 @@ class MyBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
     logMessage('BlocObserver :: Transition --> $transition');
   }
-
-  //@override
-  /*void onError(Cubit cubit, Object error, StackTrace stacktrace) {
-    super.onError(cubit, error, stacktrace);
-    logError('BlocObserver :: Error --> $error, $stacktrace');
-  }*/
 }
